@@ -1,0 +1,449 @@
+/* Enhanced Add Client Page with Modern Design */
+
+.add-client-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+}
+
+/* Background pattern */
+.add-client-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.add-client-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(255,255,255,0.2);
+  position: relative;
+  z-index: 1;
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Modern form header */
+.add-client-box .MuiTypography-h4 {
+  color: #4e73df !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  font-size: 2.2rem !important;
+  position: relative;
+}
+
+.add-client-box .MuiTypography-h4::after {
+  content: 'Create New Client Profile';
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.add-client-box .MuiTypography-h4::before {
+  content: '👤';
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Enhanced form styling */
+.add-client-box form {
+  text-align: left;
+  margin-top: 30px;
+}
+
+/* Form sections */
+.form-section {
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+  border-left: 4px solid #4e73df;
+}
+
+.section-title {
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Enhanced TextField Styling */
+.add-client-box .MuiTextField-root {
+  margin-bottom: 20px !important;
+  margin-top: 8px !important;
+}
+
+.add-client-box .MuiOutlinedInput-root {
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent;
+}
+
+.add-client-box .MuiOutlinedInput-root:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(78, 115, 223, 0.1);
+}
+
+.add-client-box .MuiOutlinedInput-root.Mui-focused {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(78, 115, 223, 0.2);
+}
+
+.add-client-box .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(78, 115, 223, 0.2) !important;
+  border-width: 2px !important;
+}
+
+.add-client-box .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(78, 115, 223, 0.4) !important;
+}
+
+.add-client-box .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #4e73df !important;
+}
+
+/* Enhanced labels */
+.add-client-box .MuiInputLabel-root {
+  font-weight: 600 !important;
+  color: #4e73df !important;
+}
+
+.add-client-box .MuiInputLabel-root.Mui-focused {
+  color: #4e73df !important;
+}
+
+/* Input field icons */
+.add-client-box .MuiTextField-root:nth-of-type(1) .MuiOutlinedInput-root::before {
+  content: '🏷️';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(2) .MuiOutlinedInput-root::before {
+  content: '📊';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(3) .MuiOutlinedInput-root::before {
+  content: '👤';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(4) .MuiOutlinedInput-root::before {
+  content: '🏢';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(5) .MuiOutlinedInput-root::before {
+  content: '📍';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(6) .MuiOutlinedInput-root::before {
+  content: '📄';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(7) .MuiOutlinedInput-root::before {
+  content: '📞';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.add-client-box .MuiTextField-root:nth-of-type(8) .MuiOutlinedInput-root::before {
+  content: '✉️';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+/* Enhanced Date Picker Styling */
+.date-picker {
+  width: 100% !important;
+  padding: 16px 14px !important;
+  border: 2px solid rgba(78, 115, 223, 0.2) !important;
+  border-radius: 12px !important;
+  font-size: 1rem !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease !important;
+  color: #495057 !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.date-picker:hover {
+  border-color: rgba(78, 115, 223, 0.4) !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 4px 12px rgba(78, 115, 223, 0.1);
+}
+
+.date-picker:focus {
+  outline: none !important;
+  border-color: #4e73df !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 6px 20px rgba(78, 115, 223, 0.2);
+}
+
+/* Date picker container */
+.add-client-box .MuiBox-root:has(.date-picker) {
+  position: relative;
+  margin: 20px 0;
+}
+
+.add-client-box .MuiBox-root:has(.date-picker) .MuiTypography-body1 {
+  color: #4e73df !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  font-size: 1rem !important;
+}
+
+.add-client-box .MuiBox-root:has(.date-picker)::after {
+  content: '📅';
+  position: absolute;
+  right: 12px;
+  bottom: 16px;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* Enhanced Submit Button */
+.submit-button {
+  margin-top: 30px !important;
+  height: 56px !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 28px !important;
+  background: linear-gradient(135deg, #4e73df 0%, #36b9cc 100%) !important;
+  box-shadow: 0 8px 25px rgba(78, 115, 223, 0.3) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(78, 115, 223, 0.4) !important;
+}
+
+.submit-button:active {
+  transform: translateY(-1px);
+}
+
+/* Success and Error Messages Enhancement */
+.add-client-box .MuiTypography-root[color="error"],
+.add-client-box .MuiTypography-root[color="success"] {
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  margin: 16px 0 !important;
+  font-weight: 600 !important;
+}
+
+.add-client-box .MuiTypography-root[color="error"] {
+  background: rgba(220, 53, 69, 0.1) !important;
+  border: 1px solid rgba(220, 53, 69, 0.2) !important;
+}
+
+.add-client-box .MuiTypography-root[color="success"] {
+  background: rgba(40, 167, 69, 0.1) !important;
+  border: 1px solid rgba(40, 167, 69, 0.2) !important;
+}
+
+/* Form Sections Organization */
+.add-client-box form > .MuiTextField-root:nth-child(-n+3) {
+  position: relative;
+}
+
+.add-client-box form > .MuiTextField-root:nth-child(-n+3)::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(78, 115, 223, 0.3), transparent);
+}
+
+.add-client-box form > .MuiTextField-root:first-child::before {
+  content: '📋 Basic Information';
+  height: auto;
+  background: none;
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0 8px 0;
+}
+
+.add-client-box form > .MuiTextField-root:nth-child(5)::before {
+  content: '📍 Contact Information';
+  height: auto;
+  background: none;
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0 8px 0;
+  margin-top: 16px;
+  border-top: 2px solid rgba(78, 115, 223, 0.1);
+}
+
+/* Loading states and interactions */
+.submit-button:disabled {
+  background: #6c757d !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-client-container {
+    padding: 15px;
+    align-items: flex-start;
+  }
+  
+  .add-client-box {
+    padding: 30px 20px;
+    margin-top: 20px;
+  }
+  
+  .add-client-box .MuiTypography-h4 {
+    font-size: 1.8rem !important;
+  }
+  
+  .submit-button {
+    height: 50px !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-client-box {
+    padding: 25px 15px;
+  }
+  
+  .add-client-box .MuiTypography-h4 {
+    font-size: 1.6rem !important;
+  }
+  
+  .add-client-box .MuiTypography-h4::before {
+    font-size: 2rem;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating labels enhancement */
+.add-client-box .MuiInputLabel-shrink {
+  transform: translate(14px, -9px) scale(0.75) !important;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+/* Focus ring enhancement */
+.add-client-box .MuiOutlinedInput-root.Mui-focused {
+  position: relative;
+}
+
+.add-client-box .MuiOutlinedInput-root.Mui-focused::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 14px;
+  background: linear-gradient(45deg, #4e73df, #36b9cc);
+  z-index: -1;
+  opacity: 0.1;
+}

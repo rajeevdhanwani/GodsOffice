@@ -1,0 +1,80 @@
+.admin-area-container {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .admin-title {
+    color: #1976d2;
+    font-weight: bold;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .admin-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .admin-button {
+    height: 60px;
+    font-size: 1.1rem;
+    text-transform: none;
+    border-radius: 4px;
+  }
+  
+  .home-button {
+    font-size: 1rem;
+    text-transform: none;
+  }
+
+  .admin-header {
+    text-align: left;
+  }
+
+  .admin-stats .stat-card {
+    transition: transform 0.2s ease;
+  }
+
+  .admin-stats .stat-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .section-title {
+    color: #1976d2;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+
+  .admin-modules {
+    text-align: left;
+  }
+
+  .admin-card.clicking {
+    animation: clickEffect 0.3s ease;
+  }
+
+  @keyframes clickEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

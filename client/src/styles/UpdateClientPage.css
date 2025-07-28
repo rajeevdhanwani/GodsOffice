@@ -1,0 +1,536 @@
+/* Enhanced Update Client Page with Modern Dashboard Design */
+
+.update-client-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+}
+
+/* Background pattern */
+.update-client-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 60%, rgba(255,255,255,0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 55px 55px;
+  pointer-events: none;
+}
+
+.update-client-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  border: 1px solid rgba(255,255,255,0.2);
+  position: relative;
+  z-index: 1;
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Enhanced Page Title */
+.update-client-box .MuiTypography-h4 {
+  color: #4e73df !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  font-size: 2.2rem !important;
+  position: relative;
+}
+
+.update-client-box .MuiTypography-h4::after {
+  content: 'Modify Client Information';
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.update-client-box .MuiTypography-h4::before {
+  content: '✏️';
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Enhanced Search Section */
+.update-client-box > div:nth-child(2) {
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 30px 0;
+  border: 2px solid rgba(78, 115, 223, 0.1);
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.update-client-box > div:nth-child(2):hover {
+  border-color: rgba(78, 115, 223, 0.2);
+  box-shadow: 0 8px 25px rgba(78, 115, 223, 0.1);
+}
+
+.update-client-box > div:nth-child(2)::before {
+  content: '🔍 Search Client to Update';
+  display: block;
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Form Enhancement - when client is selected */
+.update-client-box form {
+  text-align: left;
+  margin-top: 30px;
+  background: rgba(248, 249, 250, 0.6);
+  border-radius: 16px;
+  padding: 30px;
+  border: 2px solid rgba(78, 115, 223, 0.1);
+  position: relative;
+}
+
+.update-client-box form::before {
+  content: '✏️ Update Client Information';
+  display: block;
+  color: #4e73df;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 24px;
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(78, 115, 223, 0.2);
+}
+
+/* Enhanced TextField Styling */
+.update-client-box .MuiTextField-root {
+  margin-bottom: 20px !important;
+  margin-top: 8px !important;
+}
+
+.update-client-box .MuiOutlinedInput-root {
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent;
+}
+
+.update-client-box .MuiOutlinedInput-root:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(78, 115, 223, 0.1);
+}
+
+.update-client-box .MuiOutlinedInput-root.Mui-focused {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(78, 115, 223, 0.2);
+}
+
+.update-client-box .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(78, 115, 223, 0.2) !important;
+  border-width: 2px !important;
+}
+
+.update-client-box .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(78, 115, 223, 0.4) !important;
+}
+
+.update-client-box .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #4e73df !important;
+}
+
+/* Enhanced labels */
+.update-client-box .MuiInputLabel-root {
+  font-weight: 600 !important;
+  color: #4e73df !important;
+}
+
+.update-client-box .MuiInputLabel-root.Mui-focused {
+  color: #4e73df !important;
+}
+
+/* Input field icons - same as AddClientPage */
+.update-client-box .MuiTextField-root:nth-of-type(1) .MuiOutlinedInput-root::before {
+  content: '🏷️';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(2) .MuiOutlinedInput-root::before {
+  content: '📊';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(3) .MuiOutlinedInput-root::before {
+  content: '👤';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(4) .MuiOutlinedInput-root::before {
+  content: '🏢';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(5) .MuiOutlinedInput-root::before {
+  content: '📍';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(6) .MuiOutlinedInput-root::before {
+  content: '📄';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(7) .MuiOutlinedInput-root::before {
+  content: '📞';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.update-client-box .MuiTextField-root:nth-of-type(8) .MuiOutlinedInput-root::before {
+  content: '✉️';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+/* Date Picker Enhancement */
+.update-client-box .react-datepicker-wrapper {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.update-client-box .react-datepicker__input-container input {
+  width: 100% !important;
+  padding: 16px 14px !important;
+  border: 2px solid rgba(78, 115, 223, 0.2) !important;
+  border-radius: 12px !important;
+  font-size: 1rem !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease !important;
+  color: #495057 !important;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.update-client-box .react-datepicker__input-container input:hover {
+  border-color: rgba(78, 115, 223, 0.4) !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 4px 12px rgba(78, 115, 223, 0.1);
+}
+
+.update-client-box .react-datepicker__input-container input:focus {
+  outline: none !important;
+  border-color: #4e73df !important;
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 6px 20px rgba(78, 115, 223, 0.2);
+}
+
+/* Date picker label and container */
+.update-client-box .MuiBox-root:has(.react-datepicker-wrapper) {
+  position: relative;
+}
+
+.update-client-box .MuiBox-root:has(.react-datepicker-wrapper) .MuiTypography-body1 {
+  color: #4e73df !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  font-size: 1rem !important;
+}
+
+.update-client-box .MuiBox-root:has(.react-datepicker-wrapper)::after {
+  content: '📅';
+  position: absolute;
+  right: 12px;
+  bottom: 16px;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* Enhanced Submit Button */
+.submit-button {
+  margin-top: 30px !important;
+  height: 56px !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 28px !important;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4) !important;
+}
+
+.submit-button:active {
+  transform: translateY(-1px);
+}
+
+/* Client Selection Indicator */
+.update-client-box form {
+  position: relative;
+  overflow: hidden;
+}
+
+.update-client-box form::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #28a745, #20c997);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Success and Error Messages Enhancement */
+.update-client-box .MuiTypography-root[color="error"],
+.update-client-box .MuiTypography-root[color="success"] {
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  margin: 16px 0 !important;
+  font-weight: 600 !important;
+}
+
+.update-client-box .MuiTypography-root[color="error"] {
+  background: rgba(220, 53, 69, 0.1) !important;
+  border: 1px solid rgba(220, 53, 69, 0.2) !important;
+}
+
+.update-client-box .MuiTypography-root[color="success"] {
+  background: rgba(40, 167, 69, 0.1) !important;
+  border: 1px solid rgba(40, 167, 69, 0.2) !important;
+}
+
+.update-client-box .MuiTypography-root[color="success"]::before {
+  content: '✅ ';
+  margin-right: 8px;
+}
+
+.update-client-box .MuiTypography-root[color="error"]::before {
+  content: '❌ ';
+  margin-right: 8px;
+}
+
+/* Form Sections Organization */
+.update-client-box form > .MuiTextField-root:first-child::before {
+  content: '📋 Basic Information';
+  position: absolute;
+  top: -35px;
+  left: 0;
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.update-client-box form > .MuiTextField-root:nth-child(5)::before {
+  content: '📍 Contact Information';
+  position: absolute;
+  top: -35px;
+  left: 0;
+  color: #4e73df;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(78, 115, 223, 0.2);
+}
+
+/* Loading states */
+.submit-button:disabled {
+  background: #6c757d !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.submit-button:disabled::before {
+  display: none;
+}
+
+/* Client Status Indicator */
+.update-client-box form {
+  border-left: 4px solid #28a745;
+}
+
+/* Action Buttons Enhancement */
+.update-client-box .MuiButton-root:not(.submit-button) {
+  margin: 8px 4px !important;
+  border-radius: 20px !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  padding: 8px 20px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .update-client-container {
+    padding: 15px;
+  }
+  
+  .update-client-box {
+    padding: 30px 20px;
+  }
+  
+  .update-client-box .MuiTypography-h4 {
+    font-size: 1.8rem !important;
+  }
+  
+  .update-client-box form {
+    padding: 24px 16px;
+  }
+  
+  .submit-button {
+    height: 50px !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .update-client-box {
+    padding: 25px 15px;
+  }
+  
+  .update-client-box .MuiTypography-h4 {
+    font-size: 1.6rem !important;
+  }
+  
+  .update-client-box .MuiTypography-h4::before {
+    font-size: 2rem;
+  }
+  
+  .update-client-box form {
+    padding: 20px 12px;
+  }
+  
+  .update-client-box > div:nth-child(2) {
+    padding: 20px 16px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced focus states */
+.update-client-box .MuiOutlinedInput-root.Mui-focused::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 14px;
+  background: linear-gradient(45deg, #4e73df, #36b9cc);
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Progress indicator for update process */
+.update-client-box form.updating {
+  position: relative;
+}
+
+.update-client-box form.updating::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4e73df, #36b9cc);
+  animation: progress 2s linear infinite;
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Floating labels enhancement */
+.update-client-box .MuiInputLabel-shrink {
+  transform: translate(14px, -9px) scale(0.75) !important;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0 8px;
+  border-radius: 4px;
+}

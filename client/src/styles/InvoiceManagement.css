@@ -1,0 +1,473 @@
+/* Invoice Management Module Styles */
+
+/* Main Layout */
+.invoice-management-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Invoice Form Styles */
+.invoice-form-section {
+  margin-bottom: 32px;
+}
+
+.invoice-form-section h6 {
+  margin-bottom: 16px;
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.client-details-card {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+  margin-top: 16px;
+}
+
+.client-details-card .client-detail-row {
+  margin-bottom: 8px;
+}
+
+.client-details-card .client-detail-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Invoice Type Switch */
+.invoice-type-switch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.invoice-type-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Line Items Table */
+.line-items-container {
+  margin: 24px 0;
+}
+
+.line-items-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.line-items-table .MuiTableHead-root {
+  background-color: #f5f5f5;
+}
+
+.line-items-table .MuiTableHead-root .MuiTableCell-root {
+  font-weight: 600;
+  color: #424242;
+}
+
+.line-items-table .amount-cell {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.line-items-table .subtotal-row {
+  background-color: #f9f9f9;
+  border-top: 2px solid #e0e0e0;
+}
+
+.line-items-table .subtotal-row .MuiTableCell-root {
+  font-weight: 600;
+  color: #424242;
+}
+
+/* GST Calculator */
+.gst-calculator {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #fafafa;
+}
+
+.gst-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 0;
+}
+
+.gst-summary-row.total {
+  border-top: 2px solid #1976d2;
+  margin-top: 16px;
+  padding-top: 16px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.gst-breakdown {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.amount-in-words {
+  background-color: #e3f2fd;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.amount-in-words .label {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.amount-in-words .amount {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+/* Invoice Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.summary-card .icon {
+  margin-right: 12px;
+  font-size: 2rem;
+}
+
+.summary-card .value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.summary-card .label {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.summary-card.primary .value { color: #1976d2; }
+.summary-card.success .value { color: #388e3c; }
+.summary-card.info .value { color: #0288d1; }
+.summary-card.error .value { color: #d32f2f; }
+.summary-card.warning .value { color: #f57c00; }
+
+/* Invoice Table */
+.invoice-table-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.invoice-table .MuiTableHead-root {
+  background-color: #f5f5f5;
+}
+
+.invoice-table .MuiTableRow-root:hover {
+  background-color: #f9f9f9;
+}
+
+.invoice-number {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.client-info .primary {
+  font-weight: 600;
+  color: #333;
+}
+
+.client-info .secondary {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.status-chip {
+  text-transform: capitalize;
+}
+
+.balance-amount.positive {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+.balance-amount.zero {
+  color: #388e3c;
+  font-weight: 600;
+}
+
+/* Payment Dashboard */
+.payment-dashboard .tabs {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.aging-buckets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.aging-bucket {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+}
+
+.aging-bucket.current { border-left: 4px solid #4caf50; }
+.aging-bucket.warning { border-left: 4px solid #ff9800; }
+.aging-bucket.overdue { border-left: 4px solid #f44336; }
+.aging-bucket.critical { border-left: 4px solid #d32f2f; }
+
+.overdue-days {
+  font-weight: 600;
+}
+
+.overdue-days.current { color: #4caf50; }
+.overdue-days.warning { color: #ff9800; }
+.overdue-days.overdue { color: #f44336; }
+.overdue-days.critical { color: #d32f2f; }
+
+/* Payment Method Icons */
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-method .icon {
+  font-size: 1.2rem;
+}
+
+.payment-method .text {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+/* Filter Section */
+.filters-section {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  border: 1px solid #e0e0e0;
+}
+
+.filters-section h6 {
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .MuiButton-root {
+  min-width: 120px;
+}
+
+/* Loading and Empty States */
+.loading-state, .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.loading-state .spinner {
+  margin-bottom: 16px;
+}
+
+.empty-state .icon {
+  font-size: 4rem;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.empty-state .message {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.empty-state .sub-message {
+  color: #999;
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .invoice-management-container {
+    padding: 16px;
+  }
+  
+  .invoice-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .action-buttons {
+    justify-content: stretch;
+  }
+  
+  .action-buttons .MuiButton-root {
+    flex: 1;
+    min-width: auto;
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .aging-buckets {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Hide some table columns on mobile */
+  .invoice-table .mobile-hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .gst-calculator {
+    padding: 16px;
+  }
+  
+  .client-details-card {
+    padding: 12px;
+  }
+  
+  .summary-card {
+    padding: 16px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .client-details-card {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .gst-calculator {
+    background-color: #424242;
+    border-color: #666;
+  }
+  
+  .amount-in-words {
+    background-color: #1e3a5f;
+  }
+  
+  .filters-section {
+    background-color: #333;
+    border-color: #666;
+  }
+  
+  .invoice-table-container {
+    background-color: #424242;
+  }
+}
+
+/* Animation Utilities */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .invoice-management-container {
+    padding: 0;
+  }
+  
+  .invoice-header,
+  .filters-section,
+  .action-buttons {
+    display: none;
+  }
+  
+  .summary-cards {
+    break-inside: avoid;
+  }
+  
+  .invoice-table-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .invoice-table .MuiTableRow-root:hover {
+    background-color: transparent;
+  }
+}

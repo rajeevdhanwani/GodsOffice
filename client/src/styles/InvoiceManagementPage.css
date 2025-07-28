@@ -1,0 +1,509 @@
+/* InvoiceManagementPage.css - Enhanced Styling for Invoice Management */
+
+/* Main Container */
+.invoice-management-container {
+  background: linear-gradient(135deg, #e6f0fa 0%, #d9e4f5 100%); /* Softer, professional gradient */
+  min-height: 100vh;
+  padding: 2.5rem 0;
+}
+
+/* Header Styles */
+.invoice-header {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.invoice-header h1 {
+  background: linear-gradient(135deg, #0052cc 0%, #6f42c1 100%); /* Vibrant blue-purple gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Statistics Cards */
+.stats-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--card-color), var(--card-color-light));
+}
+
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.stats-icon {
+  background: linear-gradient(135deg, var(--card-color), var(--card-color-dark));
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.stats-card:hover .stats-icon {
+  transform: scale(1.15);
+}
+
+/* Filter Section */
+.filters-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  border: 1px solid #e6f0fa;
+}
+
+.filter-title {
+  color: #003087; /* Darker blue for better readability */
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filter-title::before {
+  content: '🔍';
+  font-size: 1.5rem;
+}
+
+/* Filter Inputs */
+.filter-input {
+  min-width: 200px; /* Wider inputs for better visibility */
+}
+
+.filter-select .MuiSelect-select {
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.filter-select .MuiInputLabel-root {
+  font-weight: 500;
+  color: #003087;
+}
+
+/* Table Styles */
+.invoice-table-container {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e6f0fa;
+}
+
+.table-header {
+  background: linear-gradient(135deg, #0052cc 0%, #003087 100%); /* Updated blue gradient */
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  padding: 1.25rem;
+  border: none;
+}
+
+.table-row {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.table-row:hover {
+  background: linear-gradient(135deg, #e6f0fa 0%, #d9e4f5 100%);
+  transform: scale(1.005);
+}
+
+.table-cell {
+  padding: 1.25rem;
+  vertical-align: middle;
+  font-size: 0.95rem;
+}
+
+/* Status Chips */
+.status-chip {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+  padding: 0.35rem 1rem;
+}
+
+.status-paid {
+  background: linear-gradient(135deg, #28a745, #218838);
+  color: #ffffff;
+}
+
+.status-unpaid {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: #ffffff;
+}
+
+.status-partial {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #ffffff;
+}
+
+.status-overdue {
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+  color: #ffffff;
+  animation: pulse-warning 2s infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.action-button {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  min-width: 48px;
+  height: 48px;
+  background: #0052cc; /* Distinct blue for visibility */
+  color: #ffffff;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background: #003087;
+}
+
+/* Pending Requests Section */
+.pending-requests {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffecb3 100%); /* Softer yellow gradient */
+  border: 2px solid #ffc107;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pending-requests::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ffc107, #ff8f00);
+}
+
+.pending-requests-title {
+  color: #856404;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pending-request-item {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pending-request-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pending-request-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #ffc107, #ff8f00);
+}
+
+/* Dialog Styles */
+.edit-request-dialog {
+  border-radius: 12px;
+}
+
+.edit-request-dialog .MuiDialogTitle-root {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%); /* Softer green for approval */
+  color: #155724;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.edit-request-dialog.reject .MuiDialogTitle-root {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); /* Softer red for rejection */
+  color: #721c24;
+}
+
+.changes-summary {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1.25rem 0;
+  border: 1px solid #ce93d8;
+}
+
+.change-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.change-item:last-child {
+  border-bottom: none;
+}
+
+.change-label {
+  font-weight: 600;
+  color: #212121;
+}
+
+.change-value {
+  color: #0052cc;
+  font-weight: 500;
+}
+
+/* Admin Override Section */
+.admin-override {
+  background: linear-gradient(135deg, #e6f0fa 0%, #d9e4f5 100%);
+  border-radius: 8px;
+  padding: 1.75rem;
+  margin-top: 1.25rem;
+  border: 1px solid #b8d4ff;
+}
+
+.admin-override-title {
+  color: #003087;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Payment Dialog */
+.payment-dialog .MuiDialogTitle-root {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  font-weight: 600;
+}
+
+/* Loading States */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .invoice-management-container {
+    padding: 1.5rem 0;
+  }
+  
+  .invoice-header {
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .filters-section {
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .filter-input {
+    min-width: 100%; /* Full width on smaller screens */
+  }
+  
+  .stats-card {
+    margin-bottom: 1.25rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .action-button {
+    width: 100%;
+    height: 44px;
+  }
+  
+  .pending-request-item {
+    padding: 1.25rem;
+  }
+  
+  .table-cell {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .invoice-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .stats-card {
+    text-align: center;
+  }
+  
+  .filter-title {
+    font-size: 1.1rem;
+  }
+  
+  .pending-requests {
+    padding: 1.25rem;
+  }
+  
+  .pending-request-item {
+    padding: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .invoice-management-container {
+    background: #ffffff;
+    padding: 0;
+  }
+  
+  .invoice-header,
+  .filters-section,
+  .pending-requests {
+    box-shadow: none;
+    border: 1px solid #d0d0d0;
+  }
+  
+  .action-buttons {
+    display: none;
+  }
+  
+  .stats-card:hover {
+    transform: none;
+  }
+}
+
+/* Accessibility */
+.invoice-management-container *:focus {
+  outline: 3px solid #0052cc;
+  outline-offset: 3px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .stats-card {
+    border: 3px solid;
+  }
+  
+  .status-chip {
+    border: 2px solid;
+  }
+  
+  .pending-request-item {
+    border: 3px solid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .stats-card,
+  .action-button,
+  .pending-request-item,
+  .table-row {
+    transition: none;
+  }
+  
+  .stats-card:hover,
+  .action-button:hover,
+  .pending-request-item:hover,
+  .table-row:hover {
+    transform: none;
+  }
+  
+  .status-overdue {
+    animation: none;
+  }
+}
+
+/* Custom scrollbar */
+.invoice-table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.invoice-table-container::-webkit-scrollbar-track {
+  background: #f0f4f8;
+  border-radius: 5px;
+}
+
+.invoice-table-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0052cc, #003087);
+  border-radius: 5px;
+}
+
+.invoice-table-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #003087, #002060);
+}

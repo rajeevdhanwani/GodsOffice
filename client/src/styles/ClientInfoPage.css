@@ -1,0 +1,425 @@
+/* Enhanced Client Info Page with Modern Dashboard Design */
+
+.client-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+}
+
+/* Background pattern */
+.client-info-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 1px, transparent 1px),
+    radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.client-info-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  border: 1px solid rgba(255,255,255,0.2);
+  position: relative;
+  z-index: 1;
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Enhanced Page Title */
+.client-info-box .MuiTypography-h4 {
+  color: #4e73df !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  font-size: 2.2rem !important;
+  position: relative;
+}
+
+.client-info-box .MuiTypography-h4::after {
+  content: 'Search and View Client Details';
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.client-info-box .MuiTypography-h4::before {
+  content: '🔍';
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Enhanced Search Bar Container */
+.client-info-box > div:nth-child(2) {
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 30px 0;
+  border: 2px solid rgba(78, 115, 223, 0.1);
+  transition: all 0.3s ease;
+}
+
+.client-info-box > div:nth-child(2):hover {
+  border-color: rgba(78, 115, 223, 0.2);
+  box-shadow: 0 8px 25px rgba(78, 115, 223, 0.1);
+}
+
+/* Client Details Section Enhancement */
+.client-info-box .MuiBox-root:has(.MuiTypography-h6) {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.client-info-box .MuiTypography-h6 {
+  color: #4e73df !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 20px !important;
+  padding: 16px 0;
+  border-bottom: 3px solid rgba(78, 115, 223, 0.2);
+  position: relative;
+}
+
+.client-info-box .MuiTypography-h6:first-of-type::before {
+  content: '👤 ';
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTypography-h6:last-of-type::before {
+  content: '📋 ';
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
+
+/* Enhanced Table Container */
+.client-info-box .MuiTableContainer-root {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+  margin-bottom: 30px !important;
+  overflow: hidden;
+  border: 1px solid rgba(78, 115, 223, 0.1);
+}
+
+/* Enhanced Table Styling */
+.client-info-box .MuiTable-root {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.client-info-box .MuiTableHead-root {
+  background: linear-gradient(135deg, #4e73df 0%, #36b9cc 100%);
+}
+
+.client-info-box .MuiTableHead-root .MuiTableCell-root {
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 20px 16px !important;
+  border-bottom: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(78, 115, 223, 0.1) !important;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:hover {
+  background: rgba(78, 115, 223, 0.05);
+  transform: scale(1.01);
+}
+
+.client-info-box .MuiTableBody-root .MuiTableCell-root {
+  padding: 16px !important;
+  font-size: 0.95rem !important;
+  border-bottom: 1px solid rgba(78, 115, 223, 0.1) !important;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableCell-root:first-child {
+  font-weight: 600 !important;
+  color: #4e73df !important;
+  background: rgba(78, 115, 223, 0.05);
+  border-right: 2px solid rgba(78, 115, 223, 0.1);
+}
+
+.client-info-box .MuiTableBody-root .MuiTableCell-root:last-child {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Add icons to client detail rows */
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(1) .MuiTableCell-root:first-child::before {
+  content: '🏷️ ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(2) .MuiTableCell-root:first-child::before {
+  content: '👤 ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(3) .MuiTableCell-root:first-child::before {
+  content: '🏢 ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(4) .MuiTableCell-root:first-child::before {
+  content: '📍 ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(5) .MuiTableCell-root:first-child::before {
+  content: '📄 ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(6) .MuiTableCell-root:first-child::before {
+  content: '📞 ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(7) .MuiTableCell-root:first-child::before {
+  content: '✉️ ';
+  margin-right: 8px;
+}
+
+.client-info-box .MuiTableBody-root .MuiTableRow-root:nth-child(8) .MuiTableCell-root:first-child::before {
+  content: '📅 ';
+  margin-right: 8px;
+}
+
+/* Tasks/Services Table Enhancement */
+.client-info-box .MuiTableContainer-root:last-child {
+  margin-bottom: 0 !important;
+}
+
+.client-info-box .MuiTableContainer-root:last-child .MuiTableHead-root {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+/* No tasks message enhancement */
+.client-info-box .MuiTableBody-root .MuiTableCell-root[colspan="6"] {
+  text-align: center !important;
+  padding: 40px !important;
+  color: #6c757d !important;
+  font-style: italic;
+  font-size: 1.1rem !important;
+  background: rgba(108, 117, 125, 0.05);
+}
+
+.client-info-box .MuiTableBody-root .MuiTableCell-root[colspan="6"]::before {
+  content: '📋';
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* Client Info Quick Stats */
+.client-info-box .MuiBox-root:has(.MuiTypography-h6)::before {
+  content: '';
+  display: block;
+  width: 100%;
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 4px solid #4e73df;
+}
+
+/* Add quick stats mock content */
+.client-info-box .MuiBox-root:has(.MuiTypography-h6)::after {
+  content: '📊 Client Status: Active | 📈 Relationship: 3 years | ⭐ Rating: 5/5 | 📞 Last Contact: 2 days ago';
+  display: block;
+  background: rgba(78, 115, 223, 0.1);
+  color: #4e73df;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgba(78, 115, 223, 0.2);
+}
+
+/* Empty state enhancement */
+.client-info-box > div:not(:has(.MuiBox-root)) {
+  position: relative;
+}
+
+.client-info-box > div:last-child:not(:has(.MuiBox-root))::after {
+  content: '🔍 Search for a client above to view their detailed information and service history';
+  display: block;
+  margin-top: 40px;
+  padding: 40px;
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 16px;
+  color: #6c757d;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px dashed rgba(108, 117, 125, 0.3);
+}
+
+/* Search result highlighting */
+.client-selected .client-info-box {
+  border: 2px solid rgba(78, 115, 223, 0.3);
+  box-shadow: 0 0 30px rgba(78, 115, 223, 0.2);
+}
+
+/* Loading states */
+.loading-search {
+  position: relative;
+}
+
+.loading-search::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #4e73df;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .client-info-container {
+    padding: 15px;
+  }
+  
+  .client-info-box {
+    padding: 30px 20px;
+  }
+  
+  .client-info-box .MuiTypography-h4 {
+    font-size: 1.8rem !important;
+  }
+  
+  .client-info-box .MuiTableHead-root .MuiTableCell-root {
+    padding: 16px 12px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .client-info-box .MuiTableBody-root .MuiTableCell-root {
+    padding: 12px !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .client-info-box .MuiTypography-h4 {
+    font-size: 1.6rem !important;
+  }
+  
+  .client-info-box .MuiTypography-h4::before {
+    font-size: 2rem;
+  }
+  
+  .client-info-box .MuiTableContainer-root {
+    overflow-x: auto;
+  }
+  
+  .client-info-box .MuiTable-root {
+    min-width: 600px;
+  }
+  
+  .client-info-box > div:nth-child(2) {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .client-info-box {
+    padding: 25px 15px;
+  }
+  
+  .client-info-box .MuiTypography-h6 {
+    font-size: 1.2rem !important;
+  }
+  
+  .client-info-box .MuiTableHead-root .MuiTableCell-root {
+    padding: 12px 8px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .client-info-box .MuiTableBody-root .MuiTableCell-root {
+    padding: 10px 8px !important;
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Advanced table interactions */
+.client-info-box .MuiTableRow-root {
+  position: relative;
+}
+
+.client-info-box .MuiTableRow-root::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #4e73df, #36b9cc);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.client-info-box .MuiTableRow-root:hover::before {
+  transform: scaleY(1);
+}
+
+/* Data visualization hints */
+.client-info-box .MuiTypography-h6::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #4e73df, #36b9cc);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Enhanced focus states */
+.client-info-box .MuiTableContainer-root:focus-within {
+  box-shadow: 0 0 20px rgba(78, 115, 223, 0.3);
+  border-color: rgba(78, 115, 223, 0.3);
+}

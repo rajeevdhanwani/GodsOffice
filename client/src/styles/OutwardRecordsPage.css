@@ -1,0 +1,724 @@
+/* client/src/styles/OutwardRecordsPage.css */
+
+/* Outward Records Page Styling */
+.outward-records-page {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* Form Container */
+.form-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(33, 150, 243, 0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+/* Form Header */
+.form-header {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(180deg); }
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+/* Form Content */
+.form-content {
+  padding: 40px;
+}
+
+/* Linked Inward Record Section */
+.linked-record-section {
+  background: linear-gradient(135deg, #f3f8ff 0%, #e8f2ff 100%);
+  border: 2px dashed #2196F3;
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.linked-record-section::before {
+  content: '🔗';
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.linked-record-header {
+  color: #1976D2;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-left: 40px;
+}
+
+.linked-record-autocomplete {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
+}
+
+.linked-record-chip {
+  margin-top: 15px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  font-weight: 600;
+}
+
+/* Field Groups with Proper Spacing and Widths */
+.field-group {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+/* Top Row: Checkbox and Date */
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.client-type-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.date-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Client Search Field - 3-4 inches (300-400px) with Lock Support */
+.client-search-field {
+  min-width: 350px;
+  max-width: 400px;
+  flex: 1;
+  position: relative;
+}
+
+.client-search-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.client-search-field .MuiOutlinedInput-root:hover:not(.locked) {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+.client-search-field .MuiOutlinedInput-root.Mui-focused:not(.locked) {
+  background-color: white;
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.2);
+}
+
+/* Locked Field Styling */
+.locked-field {
+  position: relative;
+  pointer-events: none;
+}
+
+.locked-field .MuiOutlinedInput-root,
+.locked-field .MuiInputBase-input {
+  background-color: #f5f5f5 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+}
+
+.locked-field .MuiFormLabel-root {
+  color: #999 !important;
+}
+
+.locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lock-icon {
+  color: #999;
+  font-size: 20px;
+}
+
+.locked-help-text {
+  color: #999 !important;
+  font-style: italic;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Executive and Other 2-inch Fields - 180-200px */
+.medium-field {
+  min-width: 180px;
+  max-width: 200px;
+  flex: 0 0 180px;
+}
+
+.medium-field .MuiOutlinedInput-root,
+.medium-field .MuiFormControl-root {
+  border-radius: 12px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.medium-field .MuiOutlinedInput-root:hover,
+.medium-field .MuiFormControl-root:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+/* Document Description Field - Wide (6 inches / 400-500px) with Lock Support */
+.document-field {
+  min-width: 400px;
+  max-width: 500px;
+  flex: 1;
+  position: relative;
+}
+
+.document-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.document-field .MuiOutlinedInput-root:hover:not(.Mui-disabled) {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+.document-field .MuiOutlinedInput-root.Mui-focused:not(.Mui-disabled) {
+  background-color: white;
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.2);
+}
+
+/* Mode Field - 2 inches */
+.mode-field {
+  min-width: 180px;
+  max-width: 200px;
+  flex: 0 0 180px;
+}
+
+.mode-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.mode-field .MuiOutlinedInput-root:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+/* Wide fields for remarks */
+.wide-field {
+  min-width: 400px;
+  flex: 1;
+}
+
+.wide-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.wide-field .MuiOutlinedInput-root:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+/* Date Picker Styling */
+.custom-datepicker {
+  width: 200px;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.custom-datepicker:hover {
+  border-color: #2196F3;
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+.custom-datepicker:focus {
+  outline: none;
+  border-color: #2196F3;
+  background-color: white;
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.2);
+}
+
+/* Date Filter Inputs */
+.date-filter-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.date-filter-input:hover {
+  border-color: #2196F3;
+  box-shadow: 0 2px 6px rgba(33, 150, 243, 0.1);
+}
+
+.date-filter-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+/* Button Styling */
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.clear-button {
+  background: transparent;
+  color: #2196F3;
+  padding: 15px 40px;
+  border: 2px solid #2196F3;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button:hover {
+  background: #2196F3;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+}
+
+/* Pending Approvals Section */
+.pending-approvals {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 152, 0, 0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+  border: 2px solid #ff9800;
+}
+
+.pending-approvals-header {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pending-approvals-content {
+  padding: 20px;
+}
+
+/* Records List */
+.records-list {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.records-list-header {
+  background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.records-list-content {
+  padding: 20px;
+}
+
+/* Table Styling */
+.records-table {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.records-table .MuiTableHead-root {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.records-table .MuiTableHead-root .MuiTableCell-root {
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 16px 12px;
+}
+
+.records-table .MuiTableBody-root .MuiTableRow-root {
+  transition: all 0.2s ease;
+}
+
+.records-table .MuiTableBody-root .MuiTableRow-root:hover {
+  background-color: #f0f8ff;
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
+}
+
+.records-table .MuiTableCell-root {
+  padding: 12px;
+  border-bottom: 1px solid #e3f2fd;
+}
+
+/* Filter Section */
+.filters-section {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+  border: 2px solid #2196F3;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-field {
+  min-width: 200px;
+}
+
+.filter-field .MuiOutlinedInput-root {
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.filter-field .MuiOutlinedInput-root:hover {
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.approve-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.approve-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+}
+
+.reject-button {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reject-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* Delete Button */
+.delete-button {
+  color: #f44336;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  transform: scale(1.1);
+}
+
+/* Checkbox Styling for Client Type */
+.client-type-checkbox .MuiCheckbox-root {
+  color: #2196F3;
+}
+
+.client-type-checkbox .MuiCheckbox-root.Mui-checked {
+  color: #2196F3;
+}
+
+.client-type-checkbox.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Lock Icon in Document Field */
+.document-lock-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #999;
+  font-size: 20px;
+  z-index: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .client-search-field {
+    min-width: 300px;
+    max-width: 350px;
+  }
+  
+  .document-field {
+    min-width: 350px;
+    max-width: 400px;
+  }
+  
+  .medium-field,
+  .mode-field {
+    min-width: 160px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-content {
+    padding: 20px;
+  }
+  
+  .field-group {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .client-search-field,
+  .document-field,
+  .medium-field,
+  .mode-field,
+  .wide-field {
+    min-width: 100%;
+    max-width: 100%;
+    flex: 1;
+  }
+  
+  .top-row {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .submit-button,
+  .clear-button {
+    width: 200px;
+  }
+  
+  .linked-record-section {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .custom-datepicker,
+  .date-filter-input {
+    width: 100%;
+  }
+  
+  .records-table .MuiTableCell-root {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+  
+  .linked-record-header {
+    font-size: 1rem;
+    padding-left: 0;
+  }
+  
+  .linked-record-section::before {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+/* Loading Animation */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Error and Success Messages */
+.alert-message {
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  font-weight: 500;
+}
+
+/* Dialog Styling */
+.delete-dialog .MuiDialog-paper {
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.delete-dialog .MuiDialogTitle-root {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  margin: -10px -10px 0 -10px;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Linked Record Option Styling */
+.linked-record-option {
+  padding: 10px 0;
+  border-bottom: 1px solid #e3f2fd;
+}
+
+.linked-record-option:last-child {
+  border-bottom: none;
+}
+
+.linked-record-option .option-main {
+  font-weight: 600;
+  color: #1976D2;
+}
+
+.linked-record-option .option-details {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .form-header,
+  .submit-button,
+  .approve-button,
+  .reject-button {
+    border: 2px solid #000;
+  }
+  
+  .records-table .MuiTableHead-root .MuiTableCell-root {
+    border: 1px solid #000;
+  }
+  
+  .locked-field {
+    border: 2px solid #999;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .form-header::before,
+  .submit-button,
+  .clear-button,
+  .approve-button,
+  .reject-button,
+  .delete-button {
+    animation: none;
+    transition: none;
+  }
+  
+  .submit-button:hover,
+  .clear-button:hover,
+  .approve-button:hover,
+  .reject-button:hover,
+  .delete-button:hover {
+    transform: none;
+  }
+}

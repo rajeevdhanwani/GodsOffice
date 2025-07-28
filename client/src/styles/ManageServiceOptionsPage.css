@@ -1,0 +1,243 @@
+/* Modernized styles for ManageServiceOptionsPage */
+.manage-service-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  padding: 32px 16px;
+  transition: background 0.3s ease;
+}
+
+.manage-service-box {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  width: 100%;
+  max-width: 1200px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manage-service-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.manage-service-title {
+  color: #1a3c34;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 24px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.back-button {
+  font-size: 1rem;
+  text-transform: none;
+  color: #1a3c34;
+  border-color: #1a3c34;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background: #e0f2e9;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Table Styles */
+.service-table-container {
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+}
+
+.service-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.service-table-header {
+  background: linear-gradient(90deg, #1a3c34 0%, #2a5d52 100%);
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.service-table-header .MuiTableCell-root {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 16px;
+  border-bottom: 2px solid #e0e0e0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-table-header .MuiTableCell-root:last-child {
+  border-right: none;
+}
+
+.service-table-row {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.service-table-row:hover {
+  background: #f0f4f8;
+  transform: translateY(-1px);
+}
+
+.service-table-row .MuiTableCell-root {
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #333333;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.service-table-row .MuiTableCell-root:last-child {
+  border-right: none;
+}
+
+.remarks-cell {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Custom Tooltip */
+.custom-tooltip {
+  background: #ffffff !important;
+  color: #1a3c34 !important;
+  font-size: 0.9rem !important;
+  padding: 12px !important;
+  border: 2px solid #1a3c34 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  max-width: 350px !important;
+}
+
+/* Dialog Styles */
+.MuiDialog-root {
+  z-index: 1300 !important;
+}
+
+.MuiDialog-paper {
+  border-radius: 12px;
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.MuiDialogTitle-root {
+  font-weight: 600;
+  color: #1a3c34;
+}
+
+.MuiDialogContent-root {
+  padding: 24px;
+}
+
+.MuiDialogActions-root {
+  padding: 16px;
+}
+
+/* Form Styles */
+.form-field {
+  transition: all 0.2s ease;
+}
+
+.form-field:hover {
+  transform: translateY(-2px);
+}
+
+.form-field .MuiInputBase-root {
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.form-field .Mui-focused {
+  box-shadow: 0 0 8px rgba(26, 60, 52, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .manage-service-box {
+    padding: 24px;
+    max-width: 1000px;
+  }
+
+  .service-table-container {
+    max-height: 500px;
+  }
+
+  .service-table-row .MuiTableCell-root {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .remarks-cell {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 900px) {
+  .manage-service-box {
+    padding: 16px;
+    max-width: 700px;
+  }
+
+  .service-table-container {
+    max-height: 400px;
+  }
+
+  .service-table-row .MuiTableCell-root {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .remarks-cell {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .manage-service-container {
+    padding: 16px 8px;
+  }
+
+  .manage-service-box {
+    padding: 12px;
+  }
+
+  .manage-service-title {
+    font-size: 1.5rem;
+  }
+
+  .service-table-container {
+    max-height: 300px;
+  }
+
+  .service-table-row .MuiTableCell-root {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .remarks-cell {
+    max-width: 100px;
+  }
+
+  .MuiDialog-paper {
+    margin: 16px;
+    padding: 12px;
+  }
+}

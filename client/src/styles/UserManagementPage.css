@@ -1,0 +1,201 @@
+/* client/src/styles/UserManagementPage.css */
+.user-management-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem 0;
+}
+.user-stats-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.user-stats-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+.user-table-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.user-table-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+.user-table-row {
+  transition: all 0.2s ease;
+}
+.user-table-row:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+  transform: scale(1.01);
+}
+.user-search-container {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.user-dialog {
+  backdrop-filter: blur(8px);
+}
+.user-dialog .MuiDialog-paper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+.user-form-field {
+  margin-bottom: 1.5rem;
+}
+.user-form-field .MuiTextField-root,
+.user-form-field .MuiFormControl-root {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+}
+.user-role-chip {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.user-admin-chip {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+  font-weight: 600;
+}
+.user-action-button {
+  transition: all 0.2s ease;
+}
+.user-action-button:hover {
+  transform: scale(1.1);
+}
+.user-header-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+.user-back-button {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: #667eea;
+  transition: all 0.3s ease;
+}
+.user-back-button:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+.user-add-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.user-add-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+}
+.user-team-info {
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem;
+  border-left: 4px solid #4caf50;
+}
+.user-no-team {
+  color: #757575;
+  font-style: italic;
+}
+/* Loading and Empty States */
+.user-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  margin: 2rem 0;
+}
+.user-empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #757575;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-management-container {
+    padding: 1rem 0;
+  }
+  
+  .user-search-container {
+    padding: 1rem;
+  }
+  
+  .user-stats-card {
+    margin-bottom: 1rem;
+  }
+  
+  .user-table-container {
+    overflow-x: auto;
+  }
+}
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+.user-stats-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+.user-table-container {
+  animation: fadeInUp 0.8s ease-out;
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .user-management-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+  
+  .user-stats-card {
+    background: linear-gradient(145deg, #2d3748 0%, #4a5568 100%);
+    color: white;
+  }
+  
+  .user-table-container {
+    background: rgba(45, 55, 72, 0.95);
+    color: white;
+  }
+  
+  .user-search-container {
+    background: rgba(45, 55, 72, 0.9);
+    color: white;
+  }
+}
