@@ -129,9 +129,9 @@ commonIssues.forEach((issue, index) => {
 // ==========================================
 console.log("\n=== QUICK TESTING COMMANDS ===");
 console.log("Test endpoints manually:");
-console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' http://localhost:5000/api/clients");
-console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' http://localhost:5000/api/tasks/teams");
-console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' http://localhost:5000/api/tasks/action-stages");
+console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' ${API_BASE_URL}/api/clients");
+console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' ${API_BASE_URL}/api/tasks/teams");
+console.log("curl -H 'Authorization: Bearer YOUR_TOKEN' ${API_BASE_URL}/api/tasks/action-stages");
 console.log("\n=== IMPLEMENTATION PRIORITY ===");
 console.log("1. 🔥 CRITICAL: Create server/middleware/auth.js");
 console.log("2. 🔥 CRITICAL: Add authentication to routes/tasks.js");

@@ -35,6 +35,8 @@ import {
 } from "@mui/icons-material";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const AdminPanelPage = () => {
   const navigate = useNavigate();
@@ -65,7 +67,7 @@ const AdminPanelPage = () => {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/records/pending",
+        "${API_BASE_URL}/api/records/pending",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -92,7 +94,7 @@ const AdminPanelPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/records/approve/${recordId}`,
+        `${API_BASE_URL}/api/records/approve/${recordId}`,
         {
           method: "POST",
           headers: {

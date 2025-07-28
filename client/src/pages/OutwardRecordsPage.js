@@ -55,6 +55,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import ClientSearchBar from "../components/ClientSearchBar";
 import "../styles/OutwardRecordsPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
 
 const OutwardRecordsPage = () => {
   const location = useLocation();
@@ -174,26 +175,26 @@ const OutwardRecordsPage = () => {
 
       const [userRes, clientsRes, teamRes, recordsRes, inwardRes, pendingRes] =
         await Promise.all([
-          fetch("http://localhost:5000/api/auth/user", {
+          fetch("${API_BASE_URL}/api/auth/user", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/clients", {
+          fetch("${API_BASE_URL}/api/clients", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/tasks/teams", {
+          fetch("${API_BASE_URL}/api/tasks/teams", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch(`http://localhost:5000/api/records?${queryParams}`, {
+          fetch(`${API_BASE_URL}/api/records?${queryParams}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
           // Fetch returnable inward records that haven't been returned yet
           fetch(
-            "http://localhost:5000/api/records?direction=Inward&limit=1000",
+            "${API_BASE_URL}/api/records?direction=Inward&limit=1000",
             {
               headers: { Authorization: `Bearer ${token}` },
             }
           ),
-          fetch("http://localhost:5000/api/records/pending?direction=Outward", {
+          fetch("${API_BASE_URL}/api/records/pending?direction=Outward", {
             headers: { Authorization: `Bearer ${token}` },
           }).catch(() => ({ ok: true, json: () => ({ records: [] }) })),
         ]);
@@ -403,7 +404,7 @@ const OutwardRecordsPage = () => {
         timestamp: format(formData.timestamp, "yyyy-MM-dd"),
       };
 
-      const response = await fetch("http://localhost:5000/api/records", {
+      const response = await fetch("${API_BASE_URL}/api/records", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -477,7 +478,7 @@ const OutwardRecordsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/records/approve/${recordId}`,
+        `${API_BASE_URL}/api/records/approve/${recordId}`,
         {
           method: "POST",
           headers: {
@@ -517,7 +518,7 @@ const OutwardRecordsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/records/${deleteDialog.record._id}`,
+        `${API_BASE_URL}/api/records/${deleteDialog.record._id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

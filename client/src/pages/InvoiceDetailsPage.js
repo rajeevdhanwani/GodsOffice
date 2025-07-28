@@ -68,6 +68,8 @@ import {
   formatInvoiceForDisplay,
   formatIndianDate,
 } from "../utils/invoiceUtils";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const InvoiceDetailsPage = () => {
   const { id } = useParams();
@@ -138,7 +140,7 @@ const InvoiceDetailsPage = () => {
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/invoices/${id}`,
+          `${API_BASE_URL}/api/invoices/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -250,7 +252,7 @@ const InvoiceDetailsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${id}/pdf`,
+        `${API_BASE_URL}/api/invoices/${id}/pdf`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -300,7 +302,7 @@ const InvoiceDetailsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${id}/payments`,
+        `${API_BASE_URL}/api/invoices/${id}/payments`,
         {
           method: "POST",
           headers: {
@@ -367,7 +369,7 @@ const InvoiceDetailsPage = () => {
       // Log each payment individually
       for (const payment of validPayments) {
         const response = await fetch(
-          `http://localhost:5000/api/invoices/${id}/payments`,
+          `${API_BASE_URL}/api/invoices/${id}/payments`,
           {
             method: "POST",
             headers: {
@@ -392,7 +394,7 @@ const InvoiceDetailsPage = () => {
 
       // Refresh invoice data
       const invoiceResponse = await fetch(
-        `http://localhost:5000/api/invoices/${id}`,
+        `${API_BASE_URL}/api/invoices/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

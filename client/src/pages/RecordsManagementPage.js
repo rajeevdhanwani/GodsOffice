@@ -71,13 +71,13 @@ const RecordsManagementPage = () => {
           return;
         }
         const [userRes, statsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/auth/user", {
+          fetch("${API_BASE_URL}/api/auth/user", {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }),
-          fetch("http://localhost:5000/api/records/dashboard/stats", {
+          fetch("${API_BASE_URL}/api/records/dashboard/stats", {
             headers: {
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",

@@ -29,6 +29,8 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import "../styles/AdminAreaPage.css";
+// import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const AdminAreaPage = () => {
   const navigate = useNavigate();

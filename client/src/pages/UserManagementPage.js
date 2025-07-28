@@ -46,6 +46,8 @@ import {
   People as UsersIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config"; // ✅ Correct import
+
 const UserManagementPage = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -66,17 +68,13 @@ const UserManagementPage = () => {
     teamMemberId: "",
   });
   const roles = ["Manager", "Executive", "Admin", "Staff"];
-  // API base URL
-  const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
-  // Get auth token
-  const getAuthToken = () => {
-    return localStorage.getItem("token");
-  };
-  // Fetch users from API
+
+  const getAuthToken = () => localStorage.getItem("token");
+
   const fetchUsers = async () => {
     try {
       const token = getAuthToken();
-      const response = await fetch(`${API_BASE}/users`, {
+      const response = await fetch(`${API_BASE_URL}/api/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -94,14 +92,14 @@ const UserManagementPage = () => {
       showSnackbar("Error fetching users", "error");
     }
   };
-  // Fetch available team members
+
   const fetchTeamMembers = async (editingUserId = null) => {
     try {
       const token = getAuthToken();
-      const url = editingUserId 
-        ? `${API_BASE}/users/team-members/available?editingUserId=${editingUserId}`
-        : `${API_BASE}/users/team-members/available`;
-        
+      const url = editingUserId
+        ? `${API_BASE_URL}/api/users/team-members/available?editingUserId=${editingUserId}`
+        : `${API_BASE_URL}/api/users/team-members/available`;
+
       const response = await fetch(url, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -118,7 +116,7 @@ const UserManagementPage = () => {
       console.error("Error fetching team members:", error);
     }
   };
-  // Load data on component mount
+
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
@@ -127,7 +125,7 @@ const UserManagementPage = () => {
     };
     loadData();
   }, []);
-  // Filter users based on search and role filter
+
   useEffect(() => {
     let filtered = users;
     if (searchTerm) {
@@ -143,11 +141,11 @@ const UserManagementPage = () => {
     }
     setFilteredUsers(filtered);
   }, [users, searchTerm, filterRole]);
-  // Show snackbar message
+
   const showSnackbar = (message, severity = "success") => {
     setSnackbar({ open: true, message, severity });
   };
-  // Handle dialog open for create/edit
+
   const handleOpenDialog = async (user = null) => {
     if (user) {
       setEditingUser(user);
@@ -158,7 +156,6 @@ const UserManagementPage = () => {
         isAdmin: user.isAdmin,
         teamMemberId: user.teamMemberId || "",
       });
-      // Fetch team members including the current one assigned to this user
       await fetchTeamMembers(user._id);
     } else {
       setEditingUser(null);
@@ -169,12 +166,11 @@ const UserManagementPage = () => {
         isAdmin: false,
         teamMemberId: "",
       });
-      // Fetch only unassigned team members for new user creation
       await fetchTeamMembers();
     }
     setOpenDialog(true);
   };
-  // Handle dialog close
+
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setEditingUser(null);
@@ -187,19 +183,20 @@ const UserManagementPage = () => {
     });
     setShowPassword(false);
   };
-  // Handle form submission
+
   const handleSubmit = async () => {
     try {
       const token = getAuthToken();
       const method = editingUser ? "PUT" : "POST";
-      const url = editingUser 
-        ? `${API_BASE}/users/${editingUser._id}`
-        : `${API_BASE}/users`;
-      // Prepare data - only include password if it's provided
+      const url = editingUser
+        ? `${API_BASE_URL}/api/users/${editingUser._id}`
+        : `${API_BASE_URL}/api/users`;
+
       const submitData = { ...formData };
       if (editingUser && !submitData.password) {
         delete submitData.password;
       }
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -208,13 +205,12 @@ const UserManagementPage = () => {
         },
         body: JSON.stringify(submitData),
       });
+
       if (response.ok) {
         await fetchUsers();
         await fetchTeamMembers();
         handleCloseDialog();
-        showSnackbar(
-          `User ${editingUser ? "updated" : "created"} successfully`
-        );
+        showSnackbar(`User ${editingUser ? "updated" : "created"} successfully`);
       } else {
         const error = await response.json();
         throw new Error(error.message || "Failed to save user");
@@ -224,20 +220,20 @@ const UserManagementPage = () => {
       showSnackbar(error.message, "error");
     }
   };
+
   // Handle user deletion
-  const handleDelete = async (userId) => {
-    if (!window.confirm("Are you sure you want to delete this user?")) {
-      return;
-    }
+const handleDelete = async (userId) => {
+    if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       const token = getAuthToken();
-      const response = await fetch(`${API_BASE}/users/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
+
       if (response.ok) {
         await fetchUsers();
         await fetchTeamMembers();
@@ -251,7 +247,7 @@ const UserManagementPage = () => {
       showSnackbar(error.message, "error");
     }
   };
-  // Get role color
+
   const getRoleColor = (role) => {
     const colors = {
       Admin: "#f44336",
@@ -261,6 +257,7 @@ const UserManagementPage = () => {
     };
     return colors[role] || "#757575";
   };
+  
   if (loading) {
     return (
       <Container maxWidth="xl">

@@ -63,6 +63,10 @@ import { format } from "date-fns";
 import { jsPDF } from "jspdf";
 import "../styles/TaskMasterPage.css";
 
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
+
+
 const TaskMasterPage = () => {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
@@ -254,29 +258,29 @@ const TaskMasterPage = () => {
           yearsRes,
           servicesRes,
         ] = await Promise.all([
-          fetch("http://localhost:5000/api/auth/user", {
+          fetch("${API_BASE_URL}/api/auth/user", {
             headers: authHeaders,
           }),
-          fetch(`http://localhost:5000/api/tasks?${query.toString()}`, {
+          fetch(`${API_BASE_URL}/api/tasks?${query.toString()}`, {
             headers: authHeaders,
           }),
-          fetch("http://localhost:5000/api/clients", { headers: authHeaders }),
-          fetch("http://localhost:5000/api/tasks/teams", {
+          fetch("${API_BASE_URL}/api/clients", { headers: authHeaders }),
+          fetch("${API_BASE_URL}/api/tasks/teams", {
             headers: authHeaders,
           }),
-          fetch("http://localhost:5000/api/tasks/action-stages", {
+          fetch("${API_BASE_URL}/api/tasks/action-stages", {
             headers: authHeaders,
           }),
           fetch(
-            `http://localhost:5000/api/tasks/stats?${statsQuery.toString()}`,
+            `${API_BASE_URL}/api/tasks/stats?${statsQuery.toString()}`,
             {
               headers: authHeaders,
             }
           ),
-          fetch("http://localhost:5000/api/tasks/financial-years", {
+          fetch("${API_BASE_URL}/api/tasks/financial-years", {
             headers: authHeaders,
           }),
-          fetch("http://localhost:5000/api/tasks/services/names", {
+          fetch("${API_BASE_URL}/api/tasks/services/names", {
             headers: authHeaders,
           }),
         ]);
@@ -424,7 +428,7 @@ const TaskMasterPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/tasks/bulk-update",
+        "${API_BASE_URL}/api/tasks/bulk-update",
         {
           method: "POST",
           headers: {
@@ -544,7 +548,7 @@ const TaskMasterPage = () => {
       // Handle deletion separately using DELETE endpoint
       if (actionType === "Deleted") {
         const deleteResponse = await fetch(
-          `http://localhost:5000/api/tasks/${selectedTask._id}`,
+          `${API_BASE_URL}/api/tasks/${selectedTask._id}`,
           {
             method: "DELETE",
             headers: {
@@ -610,7 +614,7 @@ const TaskMasterPage = () => {
         };
 
         const taskResponse = await fetch(
-          `http://localhost:5000/api/tasks/${selectedTask._id}`,
+          `${API_BASE_URL}/api/tasks/${selectedTask._id}`,
           {
             method: "PUT",
             headers: {
@@ -661,7 +665,7 @@ const TaskMasterPage = () => {
   const handleApproveReject = async (task, approve) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/approve/${task._id}`,
+        `${API_BASE_URL}/api/tasks/approve/${task._id}`,
         {
           method: "POST",
           headers: {
@@ -769,7 +773,7 @@ const TaskMasterPage = () => {
     setIsHistoryLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/task-history/${taskId}`,
+        `${API_BASE_URL}/api/tasks/task-history/${taskId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

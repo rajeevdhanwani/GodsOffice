@@ -68,6 +68,7 @@ import {
 } from "recharts";
 import { format, isValid } from "date-fns"; // FIXED: Added isValid import
 import "../styles/TaskManagementPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
 
 // Styled components with improved color scheme
 import { styled } from "@mui/material/styles";
@@ -252,16 +253,16 @@ const TaskManagementPage = () => {
         teamMembersResponse,
         pendingApprovalResponse,
       ] = await Promise.all([
-        fetch("http://localhost:5000/api/auth/user", { headers: authHeaders }),
+        fetch("${API_BASE_URL}/api/auth/user", { headers: authHeaders }),
         fetch(
-          `http://localhost:5000/api/tasks/analytics?${queryParams.toString()}`,
+          `${API_BASE_URL}/api/tasks/analytics?${queryParams.toString()}`,
           { headers: authHeaders }
         ),
-        fetch("http://localhost:5000/api/clients", { headers: authHeaders }),
-        fetch("http://localhost:5000/api/tasks/teams", {
+        fetch("${API_BASE_URL}/api/clients", { headers: authHeaders }),
+        fetch("${API_BASE_URL}/api/tasks/teams", {
           headers: authHeaders,
         }),
-        fetch("http://localhost:5000/api/tasks/pending-approval", {
+        fetch("${API_BASE_URL}/api/tasks/pending-approval", {
           headers: authHeaders,
         }),
       ]);
@@ -343,7 +344,7 @@ const TaskManagementPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/tasks/approve/${taskId}`,
+        `${API_BASE_URL}/api/tasks/approve/${taskId}`,
         {
           method: "POST",
           headers: {

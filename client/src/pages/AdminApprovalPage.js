@@ -76,7 +76,7 @@ const AdminApprovalPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/records/pending",
+        "${API_BASE_URL}/api/records/pending",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -101,7 +101,7 @@ const AdminApprovalPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/records/approved",
+        "${API_BASE_URL}/api/records/approved",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -121,7 +121,7 @@ const AdminApprovalPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/records/rejected",
+        "${API_BASE_URL}/api/records/rejected",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -141,7 +141,7 @@ const AdminApprovalPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/records/approval-stats",
+        "${API_BASE_URL}/api/records/approval-stats",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -161,7 +161,7 @@ const AdminApprovalPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/records/${recordId}/approve`,
+        `${API_BASE_URL}/api/records/${recordId}/approve`,
         {
           method: "POST",
           headers: {

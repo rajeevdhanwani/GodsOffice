@@ -29,6 +29,10 @@ import {
   Phone as PhoneIcon,
 } from "@mui/icons-material";
 import "../styles/ClientManagementPage.css";
+// import API_BASE_URL from "../config"; // adjust path based on file depth
+
+
+
 const ClientManagementPage = () => {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
@@ -43,7 +47,7 @@ const ClientManagementPage = () => {
   const fetchClientData = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/clients", {
+      const response = await fetch("${API_BASE_URL}/api/clients", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

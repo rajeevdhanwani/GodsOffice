@@ -69,6 +69,8 @@ import ClientSearchBar from "../components/ClientSearchBar";
 import PendingRequestsSection from "../components/PendingRequestsSection";
 import { designSystem } from "../theme/designSystem";
 import "../styles/animations.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 ChartJS.register(ArcElement, ChartTooltip, Legend);
 
@@ -344,21 +346,21 @@ const InvoiceManagementPage = () => {
         const [invoicesRes, statsRes, clientsRes, settingsRes] =
           await Promise.all([
             fetch(
-              `http://localhost:5000/api/invoices?${queryParams.toString()}`,
+              `${API_BASE_URL}/api/invoices?${queryParams.toString()}`,
               {
                 headers: { Authorization: `Bearer ${token}` },
               }
             ),
             fetch(
-              `http://localhost:5000/api/invoices/stats?${statsQuery.toString()}`,
+              `${API_BASE_URL}/api/invoices/stats?${statsQuery.toString()}`,
               {
                 headers: { Authorization: `Bearer ${token}` },
               }
             ),
-            fetch("http://localhost:5000/api/clients", {
+            fetch("${API_BASE_URL}/api/clients", {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            fetch("http://localhost:5000/api/settings/invoice", {
+            fetch("${API_BASE_URL}/api/settings/invoice", {
               headers: { Authorization: `Bearer ${token}` },
             }),
           ]);
@@ -488,7 +490,7 @@ const InvoiceManagementPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${invoiceId}/pdf`,
+        `${API_BASE_URL}/api/invoices/${invoiceId}/pdf`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -602,7 +604,7 @@ const InvoiceManagementPage = () => {
         body.modifiedChanges = modifiedChanges;
       }
 
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -732,7 +734,7 @@ const InvoiceManagementPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${selectedInvoice._id}/payments`,
+        `${API_BASE_URL}/api/invoices/${selectedInvoice._id}/payments`,
         {
           method: "POST",
           headers: {

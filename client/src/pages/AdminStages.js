@@ -15,6 +15,8 @@ import { Link, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import "../styles/AdminAreaPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const AdminStages = () => {
   const [stages, setStages] = useState([]);
@@ -49,7 +51,7 @@ const AdminStages = () => {
         }
 
         const response = await fetch(
-          "http://localhost:5000/api/action-stages",
+          "${API_BASE_URL}/api/action-stages",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -86,7 +88,7 @@ const AdminStages = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/api/action-stages", {
+      const response = await fetch("${API_BASE_URL}/api/action-stages", {
         method: "POST",
         headers,
         body: JSON.stringify(newStage),
@@ -127,7 +129,7 @@ const AdminStages = () => {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/action-stages/${editStage._id}`,
+        `${API_BASE_URL}/api/action-stages/${editStage._id}`,
         {
           method: "PUT",
           headers,
@@ -169,7 +171,7 @@ const AdminStages = () => {
       }
 
       const response = await fetch(
-        `http://localhost:5000/api/action-stages/${id}`,
+        `${API_BASE_URL}/api/action-stages/${id}`,
         {
           method: "DELETE",
           headers,

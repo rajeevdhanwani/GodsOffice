@@ -18,6 +18,8 @@ import {
 } from "@mui/material";
 import { Save, ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+// import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const states = [
   "Andhra Pradesh",
@@ -109,7 +111,7 @@ const InvoiceSettingsPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:5000/api/settings/invoice",
+          "${API_BASE_URL}/api/settings/invoice",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -224,7 +226,7 @@ const InvoiceSettingsPage = () => {
 
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/settings/invoice",
+        "${API_BASE_URL}/api/settings/invoice",
         {
           method: "POST",
           headers: {
@@ -268,17 +270,14 @@ const InvoiceSettingsPage = () => {
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography
-        variant="h4"
-        sx={{ mb: 4, textAlign: "center", fontFamily: "'Poppins', sans-serif" }}
-      >
+      <Typography variant="h4" sx={{ mb: 4, textAlign: "center" }}>
         📋 Invoice Settings
       </Typography>
 
       {errors.length > 0 && (
         <Box sx={{ mb: 4 }}>
           {errors.map((error, index) => (
-            <Alert key={index} severity="error" sx={{ mb: 2, borderRadius: 2 }}>
+            <Alert key={index} severity="error" sx={{ mb: 2 }}>
               {error}
             </Alert>
           ))}
@@ -287,21 +286,8 @@ const InvoiceSettingsPage = () => {
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <Paper
-            sx={{
-              p: 4,
-              borderRadius: "12px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                mb: 3,
-                color: "#4e73df",
-                fontFamily: "'Poppins', sans-serif",
-              }}
-            >
+          <Paper sx={{ p: 4, borderRadius: "12px" }}>
+            <Typography variant="h5" sx={{ mb: 3, color: "#4e73df" }}>
               Biller-1 Settings
             </Typography>
             <Grid container spacing={3}>
@@ -493,21 +479,8 @@ const InvoiceSettingsPage = () => {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Paper
-            sx={{
-              p: 4,
-              borderRadius: "12px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                mb: 3,
-                color: "#4e73df",
-                fontFamily: "'Poppins', sans-serif",
-              }}
-            >
+          <Paper sx={{ p: 4, borderRadius: "12px" }}>
+            <Typography variant="h5" sx={{ mb: 3, color: "#4e73df" }}>
               Biller-2 Settings
             </Typography>
             <Grid container spacing={3}>
@@ -699,21 +672,8 @@ const InvoiceSettingsPage = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Paper
-            sx={{
-              p: 4,
-              borderRadius: "12px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                mb: 3,
-                color: "#4e73df",
-                fontFamily: "'Poppins', sans-serif",
-              }}
-            >
+          <Paper sx={{ p: 4, borderRadius: "12px" }}>
+            <Typography variant="h5" sx={{ mb: 3, color: "#4e73df" }}>
               Invoice Numbering Settings
             </Typography>
             <Grid container spacing={3}>
@@ -804,7 +764,6 @@ const InvoiceSettingsPage = () => {
             startIcon={<ArrowBack />}
             onClick={() => navigate("/admin")}
             disabled={saving}
-            sx={{ borderColor: "#4e73df", color: "#4e73df" }}
           >
             Back
           </Button>
@@ -813,10 +772,7 @@ const InvoiceSettingsPage = () => {
             startIcon={<Save />}
             onClick={handleSubmit}
             disabled={saving}
-            sx={{
-              backgroundColor: "#4e73df",
-              "&:hover": { backgroundColor: "#3b5cb8" },
-            }}
+            sx={{ backgroundColor: "#4e73df" }}
           >
             {saving ? "Saving..." : "Save Settings"}
           </Button>

@@ -52,6 +52,7 @@ import { format, isValid } from "date-fns";
 import { styled } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/NewTaskPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
 
 // Styled components
 const ProfessionalCard = styled(Card)(({ theme }) => ({
@@ -226,11 +227,11 @@ const NewTaskPage = () => {
         };
 
         const [clientsRes, servicesRes, teamRes] = await Promise.all([
-          fetch("http://localhost:5000/api/clients", { headers: authHeaders }),
-          fetch("http://localhost:5000/api/tasks/services", {
+          fetch("${API_BASE_URL}/api/clients", { headers: authHeaders }),
+          fetch("${API_BASE_URL}/api/tasks/services", {
             headers: authHeaders,
           }),
-          fetch("http://localhost:5000/api/teams", { headers: authHeaders }),
+          fetch("${API_BASE_URL}/api/teams", { headers: authHeaders }),
         ]);
 
         if (!clientsRes.ok) {
@@ -311,7 +312,7 @@ const NewTaskPage = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await fetch(
-          `http://localhost:5000/api/tasks/clientservices?clientCode=${client.clientCode}`,
+          `${API_BASE_URL}/api/tasks/clientservices?clientCode=${client.clientCode}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -536,7 +537,7 @@ const NewTaskPage = () => {
         console.log("Task generation payload:", payload);
 
         const res = await fetch(
-          "http://localhost:5000/api/tasks/generate-new",
+          "${API_BASE_URL}/api/tasks/generate-new",
           {
             method: "POST",
             headers: {
@@ -559,7 +560,7 @@ const NewTaskPage = () => {
             financialYear: getFinancialYear(service.startDate),
           };
           const clientServiceRes = await fetch(
-            "http://localhost:5000/api/tasks/clientservices",
+            "${API_BASE_URL}/api/tasks/clientservices",
             {
               method: "POST",
               headers: {
@@ -602,7 +603,7 @@ const NewTaskPage = () => {
 
       // Refresh portfolio
       const portfolioRes = await fetch(
-        `http://localhost:5000/api/tasks/clientservices?clientCode=${selectedClient.clientCode}`,
+        `${API_BASE_URL}/api/tasks/clientservices?clientCode=${selectedClient.clientCode}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

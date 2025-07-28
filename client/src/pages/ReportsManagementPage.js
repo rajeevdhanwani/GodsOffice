@@ -22,6 +22,8 @@ import {
   Filler,
 } from "chart.js";
 import "../styles/ReportsManagementPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 // Register Chart.js components
 ChartJS.register(
@@ -617,7 +619,7 @@ const ReportsManagementPage = () => {
   const fetchDashboardData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/cross-module-analytics/dashboard",
+        "${API_BASE_URL}/api/reports/cross-module-analytics/dashboard",
         setDashboardData,
         "dashboard"
       ),
@@ -627,7 +629,7 @@ const ReportsManagementPage = () => {
   const fetchClientPortfolioData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/client-reports/portfolio",
+        "${API_BASE_URL}/api/reports/client-reports/portfolio",
         setClientPortfolioData,
         "client portfolio"
       ),
@@ -637,7 +639,7 @@ const ReportsManagementPage = () => {
   const fetchTaskStatusData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/task-reports/status",
+        "${API_BASE_URL}/api/reports/task-reports/status",
         setTaskStatusData,
         "task status"
       ),
@@ -647,7 +649,7 @@ const ReportsManagementPage = () => {
   const fetchRevenueAnalysisData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/invoice-reports/revenue-analysis",
+        "${API_BASE_URL}/api/reports/invoice-reports/revenue-analysis",
         setRevenueAnalysisData,
         "revenue analysis"
       ),
@@ -657,7 +659,7 @@ const ReportsManagementPage = () => {
   const fetchServiceAnalysisData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/task-reports/service-analysis",
+        "${API_BASE_URL}/api/reports/task-reports/service-analysis",
         setServiceAnalysisData,
         "service analysis"
       ),
@@ -667,7 +669,7 @@ const ReportsManagementPage = () => {
   const fetchClientServiceMatrixData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/cross-module-analytics/client-service-matrix",
+        "${API_BASE_URL}/api/reports/cross-module-analytics/client-service-matrix",
         setClientServiceMatrixData,
         "client service matrix"
       ),
@@ -677,7 +679,7 @@ const ReportsManagementPage = () => {
   const fetchTeamPerformanceData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/team-reports/performance",
+        "${API_BASE_URL}/api/reports/team-reports/performance",
         setTeamPerformanceData,
         "team performance"
       ),
@@ -687,7 +689,7 @@ const ReportsManagementPage = () => {
   const fetchWorkloadAnalysisData = useCallback(
     () =>
       fetchData(
-        "http://localhost:5000/api/reports/team-reports/workload",
+        "${API_BASE_URL}/api/reports/team-reports/workload",
         setWorkloadAnalysisData,
         "team workload"
       ),
@@ -769,7 +771,7 @@ const ReportsManagementPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/reports/ai/query",
+        "${API_BASE_URL}/api/reports/ai/query",
         {
           method: "POST",
           headers: {
@@ -813,7 +815,7 @@ const ReportsManagementPage = () => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/reports/export/${options.reportType}?${params}`,
+        `${API_BASE_URL}/api/reports/export/${options.reportType}?${params}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

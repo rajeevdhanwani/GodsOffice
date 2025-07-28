@@ -12,6 +12,8 @@ import {
   VpnKey as RolesIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const UserRolesPage = () => {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const UserRolesPage = () => {
   const [loading, setLoading] = useState(true);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
   
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+  const API_BASE = process.env.REACT_APP_API_URL || '${API_BASE_URL}/api';
 
   useEffect(() => {
     fetchData();

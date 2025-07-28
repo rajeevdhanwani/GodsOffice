@@ -22,8 +22,8 @@ const DashboardPage = () => {
   const fetchStats = async () => {
     try {
       const [clientsRes, tasksRes] = await Promise.all([
-        fetch("http://localhost:5000/api/imports/clients/count"),
-        fetch("http://localhost:5000/api/tasks/summary"),
+        fetch("${API_BASE_URL}/api/imports/clients/count"),
+        fetch("${API_BASE_URL}/api/tasks/summary"),
       ]);
       const clientsData = await clientsRes.json();
       const tasksData = await tasksRes.json();

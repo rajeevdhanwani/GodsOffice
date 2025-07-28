@@ -29,6 +29,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import "../styles/ManageServiceOptionsPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 // Styled components
 const ProfessionalCard = styled(Box)(({ theme }) => ({
@@ -88,7 +90,7 @@ const ManageServiceOptionsPage = () => {
           navigate("/auth");
           return;
         }
-        const response = await fetch("http://localhost:5000/api/auth/profile", {
+        const response = await fetch("${API_BASE_URL}/api/auth/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (response.ok) {
@@ -124,7 +126,7 @@ const ManageServiceOptionsPage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:5000/api/tasks/services",
+          "${API_BASE_URL}/api/tasks/services",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -363,8 +365,8 @@ const ManageServiceOptionsPage = () => {
       const token = localStorage.getItem("token");
       const method = editService ? "PUT" : "POST";
       const url = editService
-        ? `http://localhost:5000/api/tasks/services/${editService._id}`
-        : "http://localhost:5000/api/tasks/services";
+        ? `${API_BASE_URL}/api/tasks/services/${editService._id}`
+        : "${API_BASE_URL}/api/tasks/services";
 
       const response = await fetch(url, {
         method,
@@ -388,7 +390,7 @@ const ManageServiceOptionsPage = () => {
 
       // Refresh services list
       const updatedServices = await fetch(
-        "http://localhost:5000/api/tasks/services",
+        "${API_BASE_URL}/api/tasks/services",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -409,7 +411,7 @@ const ManageServiceOptionsPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/tasks/services/${serviceId}`,
+        `${API_BASE_URL}/api/tasks/services/${serviceId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

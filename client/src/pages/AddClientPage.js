@@ -56,7 +56,7 @@ const AddClientPage = () => {
       // ✅ FIX: Get token from localStorage (same pattern as other pages)
       const token = localStorage.getItem("token");
       
-      const response = await fetch('http://localhost:5000/api/clients', {
+      const response = await fetch('${API_BASE_URL}/api/clients', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

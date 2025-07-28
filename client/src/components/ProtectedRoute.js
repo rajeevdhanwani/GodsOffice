@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
         return;
       }
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/auth/user`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || '${API_BASE_URL}/api'}/auth/user`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',

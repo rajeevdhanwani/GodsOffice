@@ -4,6 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ClientSearchBar from "../components/ClientSearchBar";
 import "../styles/UpdateClientPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
+
+
 const UpdateClientPage = () => {
   const [clients, setClients] = useState([]);
   const [selectedClient, setSelectedClient] = useState(null);
@@ -24,7 +28,7 @@ const UpdateClientPage = () => {
     const fetchClients = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/clients", {
+        const response = await fetch("${API_BASE_URL}/api/clients", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -97,7 +101,7 @@ const UpdateClientPage = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/clients/${selectedClient.clientCode}`,
+        `${API_BASE_URL}/api/clients/${selectedClient.clientCode}`,
         {
           method: "PUT",
           headers: {

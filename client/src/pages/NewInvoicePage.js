@@ -56,6 +56,7 @@ import ClientSearchBar from "../components/ClientSearchBar";
 import TaskSelectionDialog from "../components/TaskSelectionDialog";
 // import { formatIndianCurrency } from "../utils/invoiceUtils";
 import "../styles/NewInvoicePage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
 
 // State code mapping for automatic place of supply determination
 const STATE_CODE_MAPPING = {
@@ -335,10 +336,10 @@ const NewInvoicePage = () => {
         }
 
         const [clientsRes, settingsRes] = await Promise.all([
-          fetch("http://localhost:5000/api/clients", {
+          fetch("${API_BASE_URL}/api/clients", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/settings/invoice", {
+          fetch("${API_BASE_URL}/api/settings/invoice", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -395,7 +396,7 @@ const NewInvoicePage = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/taskbillings/billed-tasks/${formData.clientCode}`,
+          `${API_BASE_URL}/api/taskbillings/billed-tasks/${formData.clientCode}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -828,7 +829,7 @@ const NewInvoicePage = () => {
         invoiceData
       );
 
-      const response = await fetch("http://localhost:5000/api/invoices", {
+      const response = await fetch("${API_BASE_URL}/api/invoices", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

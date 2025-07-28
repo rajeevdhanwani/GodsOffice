@@ -47,6 +47,8 @@ import {
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 // Task status configurations
 const TASK_STATUSES = {
@@ -270,7 +272,7 @@ const TaskSelectionDialog = ({
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/tasks?clientCode=${clientCode}&limit=100`,
+        `${API_BASE_URL}/api/tasks?clientCode=${clientCode}&limit=100`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -319,7 +321,7 @@ const TaskSelectionDialog = ({
       const token = localStorage.getItem("token");
       const encodedServiceName = encodeURIComponent(serviceName.trim());
       const response = await fetch(
-        `http://localhost:5000/api/services/by-name/${encodedServiceName}`,
+        `${API_BASE_URL}/api/services/by-name/${encodedServiceName}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -528,7 +530,7 @@ const TaskSelectionDialog = ({
       });
 
       const response = await fetch(
-        `http://localhost:5000/api/taskbillings/analyze-period-billing?` +
+        `${API_BASE_URL}/api/taskbillings/analyze-period-billing?` +
           new URLSearchParams({
             clientCode,
             serviceName: periodServiceName,
@@ -576,7 +578,7 @@ const TaskSelectionDialog = ({
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:5000/api/invoices/service-amounts/${clientCode}`,
+          `${API_BASE_URL}/api/invoices/service-amounts/${clientCode}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -603,7 +605,7 @@ const TaskSelectionDialog = ({
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/api/taskbillings/task-counts-for-billing/${clientCode}`,
+        `${API_BASE_URL}/api/taskbillings/task-counts-for-billing/${clientCode}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -657,7 +659,7 @@ const TaskSelectionDialog = ({
       );
 
       let response = await fetch(
-        `http://localhost:5000/api/taskbillings/tasks-for-billing?${queryParams.toString()}`,
+        `${API_BASE_URL}/api/taskbillings/tasks-for-billing?${queryParams.toString()}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -666,7 +668,7 @@ const TaskSelectionDialog = ({
       if (!response.ok && response.status === 404) {
         console.log("📝 Falling back to regular tasks endpoint");
         response = await fetch(
-          `http://localhost:5000/api/tasks?${queryParams.toString()}`,
+          `${API_BASE_URL}/api/tasks?${queryParams.toString()}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

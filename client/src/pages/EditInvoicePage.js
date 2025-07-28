@@ -69,6 +69,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import ClientSearchBar from "../components/ClientSearchBar";
 import { formatIndianCurrency } from "../utils/invoiceUtils";
+import API_BASE_URL from "../config"; // adjust path based on file depth
+
 
 const theme = {
   primary: "#1976d2",
@@ -265,13 +267,13 @@ const EditInvoicePage = () => {
         }
 
         const [invoiceRes, clientsRes, settingsRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/invoices/${id}`, {
+          fetch(`${API_BASE_URL}/api/invoices/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/clients", {
+          fetch("${API_BASE_URL}/api/clients", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:5000/api/settings/invoice", {
+          fetch("${API_BASE_URL}/api/settings/invoice", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -373,7 +375,7 @@ const EditInvoicePage = () => {
         const token = localStorage.getItem("token");
         const statusParam = taskStatusFilter.join(",");
         const response = await fetch(
-          `http://localhost:5000/api/tasks?clientCode=${formData.clientCode}&status=${statusParam}&limit=1000`,
+          `${API_BASE_URL}/api/tasks?clientCode=${formData.clientCode}&status=${statusParam}&limit=1000`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -643,7 +645,7 @@ const EditInvoicePage = () => {
 
       console.log("Sending edit request data:", editData);
 
-      const response = await fetch(`http://localhost:5000/api/invoices/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/invoices/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

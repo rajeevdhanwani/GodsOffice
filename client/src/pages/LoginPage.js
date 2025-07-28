@@ -1,4 +1,3 @@
-import { apiFetch } from '../utils/api';
 import React, { useState } from "react";
 import {
   Button,
@@ -14,6 +13,7 @@ import {
 import { Visibility, VisibilityOff, Lock, Person } from "@mui/icons-material";
 import "../styles/LoginPage.css";
 import "../styles/animations.css";
+import API_BASE_URL from "../config";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await apiFetch('/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

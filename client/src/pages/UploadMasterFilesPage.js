@@ -34,6 +34,7 @@ import Lock from "@mui/icons-material/Lock";
 import LockOpen from "@mui/icons-material/LockOpen";
 import Papa from "papaparse";
 import "../styles/UploadMasterFilesPage.css";
+import API_BASE_URL from "../config"; // adjust path based on file depth
 
 // Styled components
 const ProfessionalCard = styled(Box)(({ theme }) => ({
@@ -407,7 +408,7 @@ const UploadMasterFilesPage = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks/upload/status",
+        "${API_BASE_URL}/api/tasks/upload/status",
         {
           headers: { Authorization: token ? `Bearer ${token}` : "" },
         }
@@ -448,7 +449,7 @@ const UploadMasterFilesPage = () => {
       const token = localStorage.getItem("token");
       try {
         const response = await fetch(
-          "http://localhost:5000/api/imports/import-lock",
+          "${API_BASE_URL}/api/imports/import-lock",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -476,7 +477,7 @@ const UploadMasterFilesPage = () => {
         return;
       }
       try {
-        const response = await fetch("http://localhost:5000/api/auth/user", {
+        const response = await fetch("${API_BASE_URL}/api/auth/user", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -654,7 +655,7 @@ const UploadMasterFilesPage = () => {
             );
             try {
               const response = await fetch(
-                `http://localhost:5000/api/imports/${endpoint}`,
+                `${API_BASE_URL}/api/imports/${endpoint}`,
                 {
                   method: "POST",
                   body: formData,
@@ -725,7 +726,7 @@ const UploadMasterFilesPage = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks/generate-existing",
+        "${API_BASE_URL}/api/tasks/generate-existing",
         {
           method: "POST",
           headers: { Authorization: token ? `Bearer ${token}` : "" },
@@ -776,7 +777,7 @@ const UploadMasterFilesPage = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks/generate-existing",
+        "${API_BASE_URL}/api/tasks/generate-existing",
         {
           method: "POST",
           headers: {
@@ -830,7 +831,7 @@ const UploadMasterFilesPage = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        "http://localhost:5000/api/imports/reset-collections",
+        "${API_BASE_URL}/api/imports/reset-collections",
         {
           method: "DELETE",
           headers: { Authorization: token ? `Bearer ${token}` : "" },
@@ -877,7 +878,7 @@ const UploadMasterFilesPage = () => {
       const client =
         taskGenerationResults.find((r) => r.clientCode && r.clientName) || {};
       const response = await fetch(
-        "http://localhost:5000/api/imports/import-lock",
+        "${API_BASE_URL}/api/imports/import-lock",
         {
           method: "POST",
           headers: {
@@ -947,7 +948,7 @@ const UploadMasterFilesPage = () => {
       const client =
         taskGenerationResults.find((r) => r.clientCode && r.clientName) || {};
       const response = await fetch(
-        "http://localhost:5000/api/imports/import-lock",
+        "${API_BASE_URL}/api/imports/import-lock",
         {
           method: "POST",
           headers: {
