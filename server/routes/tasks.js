@@ -2010,12 +2010,13 @@ router.put("/:id", async (req, res) => {
     }
 
     if (dueDate) {
+      if (!isAdmin) {
+        return res.status(403).json({ message: "Only admins can change the due date directly." });
+      }
       const newDue = new Date(dueDate);
       if (!isNaN(newDue.getTime())) {
         task.dueDate = newDue;
         task.dueDateSource = dueDateSource || "OVERRIDE";
-        // Recalculate overdue
-        task.overdue = newDue < new Date() && task.status === "Pending";
       }
     }
 
@@ -2027,11 +2028,8 @@ router.put("/:id", async (req, res) => {
       console.log(`📅 Setting completion date: ${completedAt}`);
       task.completedAt = new Date(completedAt);
     }
-    // Update overdue status
-    if (task.dueDate < new Date() && task.status === "Pending") {
-      task.overdue = true;
-      console.log(`⏰ Marking task as overdue: ${task._id}`);
-    }
+    // Unified overdue recalculation — runs after all field updates
+    task.overdue = !!(task.dueDate && task.dueDate < new Date() && task.status === "Pending");
     // Save the task
     console.log(`💾 Saving task ${task._id} with status: ${task.status}`);
     await task.save();
