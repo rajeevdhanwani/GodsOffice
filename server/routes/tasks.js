@@ -2835,7 +2835,7 @@ router.get("/clientservices", auth, async (req, res) => {
     const filter = {
       firm: req.firmId,
       ...(clientCode ? { clientCode } : {}),
-      isDeleted: false,
+      isDeleted: { $ne: true },
     };
 
     const clientServices = await ClientService.find(filter)
