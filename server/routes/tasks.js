@@ -444,6 +444,7 @@ router.get("/export", auth, requireFirm, async (req, res) => {
         periodKey: 1,
         createdAt: 1,
         updatedAt: 1,
+        description: 1,
       })
       .sort({ clientCode: 1, serviceCode: 1, assignedAt: 1 })
       .lean();
@@ -648,6 +649,7 @@ router.get("/", async (req, res) => {
       deletedAt: 1,
       updatedAt: 1,
       createdAt: 1,
+      description: 1,
     };
 
     const mongoSortMap = {
