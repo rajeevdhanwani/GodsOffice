@@ -210,6 +210,7 @@ class TaskGenerator {
     startDate,
     endDate,
     manualDueDate = null,
+    description = null,
   }) {
     this.firmId = firmId;
     this.clientCode = clientCode;
@@ -224,6 +225,7 @@ class TaskGenerator {
     } else {
       this.manualDueDate = null;
     }
+    this.description = description ? String(description).trim() : null;
 
     this.service = null;
     this.tasksToPlan = [];
@@ -774,6 +776,7 @@ class TaskGenerator {
       overdue: dueDate < now && assignedAt <= now,
       priority: this.service.priority || "Medium",
       dueDateSource: dueDateSource || "RULE",
+      ...(this.description ? { description: this.description } : {}),
     };
   }
 

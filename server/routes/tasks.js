@@ -1885,8 +1885,7 @@ router.put("/:id", async (req, res) => {
       userId: req.user?.userId || req.user?.id,
     });
 
-    // ✅ ENTERPRISE FIX: Standardize admin check using role-based approach
-    const isAdmin = req.user?.role === "ADMIN";
+    const isAdmin = req.isAdmin;
 
     // Find the task
     const task = await Task.findOne({ _id: req.params.id, firm: req.firmId });
@@ -2010,8 +2009,15 @@ router.put("/:id", async (req, res) => {
     }
 
     if (dueDate) {
-      if (!isAdmin) {
-        return res.status(403).json({ message: "Only admins can change the due date directly." });
+      // Allow admin OR the currently assigned team member to change the due date
+      let canChangeDueDate = isAdmin;
+      if (!canChangeDueDate) {
+        const userId = req.user?.userId || req.user?.id;
+        const member = await FirmMember.findOne({ firmId: req.firmId, userId }).lean();
+        canChangeDueDate = member && member.teamMemberId === task.teamMemberId;
+      }
+      if (!canChangeDueDate) {
+        return res.status(403).json({ message: "Only admins or the assigned team member can change the due date." });
       }
       const newDue = new Date(dueDate);
       if (!isNaN(newDue.getTime())) {
@@ -2046,7 +2052,7 @@ router.put("/:id", async (req, res) => {
     const hasTeamMemberChange =
       teamMemberId && teamMemberId !== previousTeamMemberId; // ✅ correct comparison
     const hasCompletionDateChange = completedAt;
-    const hasDueDateChange = dueDate && !hasStatusChange && !hasTeamMemberChange;
+    const hasDueDateChange = !!dueDate;
 
     if (hasStatusChange || hasTeamMemberChange || hasCompletionDateChange || hasDueDateChange) {
       console.log(`📝 Creating history entry for task update`);
@@ -2552,24 +2558,12 @@ router.post("/generate-new", auth, async (req, res) => {
       teamMemberId,
       startDate,
       financialYear,
-      manualDueDate: manualDueDate || null,   // ← add this
+      manualDueDate: manualDueDate || null,
+      description: description || null,
     });
 
     // Execute the generation logic by calling the service
     const out = await generator.generate();
-
-    // If a description was provided, apply it to all generated tasks
-    if (description && out?.insertedCount > 0) {
-      await Task.updateMany(
-        {
-          firm: req.firmId,
-          clientCode: normClientCode,
-          serviceCode: normServiceCode,
-          createdAt: { $gte: new Date(Date.now() - 10000) }, // tasks created in last 10s
-        },
-        { $set: { description: String(description).trim() } }
-      );
-    }
 
     const errors = Array.isArray(out?.errors) ? out.errors : [];
     const tasksCreated = Number(out?.insertedCount || 0);
