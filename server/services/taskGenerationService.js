@@ -218,7 +218,12 @@ class TaskGenerator {
     this.financialYear = financialYear;
     this.startDate = istMidnightFrom(startDate || new Date());
     this.endDate = endDate ? istMidnightFrom(endDate) : null;
-    this.manualDueDate = manualDueDate ? istMidnightFrom(manualDueDate) : null;
+    if (manualDueDate) {
+      const _d = istMidnightFrom(manualDueDate);
+      this.manualDueDate = isNaN(_d.getTime()) ? null : _d;
+    } else {
+      this.manualDueDate = null;
+    }
 
     this.service = null;
     this.tasksToPlan = [];
