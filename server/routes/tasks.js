@@ -650,6 +650,7 @@ router.get("/", async (req, res) => {
       updatedAt: 1,
       createdAt: 1,
       description: 1,
+      subtasks: 1,
     };
 
     const mongoSortMap = {
@@ -4026,7 +4027,7 @@ router.patch("/:id/subtasks", auth, async (req, res) => {
           } else if (was.done !== item.done) {
             candidates.push({
               value: item.label,
-              remark: item.done ? "✓ Checked off" : "↩ Unchecked",
+              remark: item.done ? "Completed" : "↩ Unchecked",
             });
           }
         }
@@ -4048,7 +4049,11 @@ router.patch("/:id/subtasks", auth, async (req, res) => {
             recentEntries.map((e) => `${e.value}::${e.remark}`),
           );
 
-          for (const c of candidates) {
+          // Toggle ops (check/uncheck) — always log individually
+          const toggleCandidates = candidates.filter(
+            (c) => c.remark !== "Sub-task added" && c.remark !== "Sub-task removed",
+          );
+          for (const c of toggleCandidates) {
             const key = `${c.value}::${c.remark}`;
             if (!recentKeys.has(key)) {
               historyEntries.push({
@@ -4062,10 +4067,50 @@ router.patch("/:id/subtasks", auth, async (req, res) => {
               });
             }
           }
+
+          // Add/remove ops — at most ONE entry per 60-second window.
+          // Individual adds/removes within a session are silently deduped so the
+          // audit trail doesn't balloon with one line per subtask.
+          const addRemoveCandidates = candidates.filter(
+            (c) => c.remark === "Sub-task added" || c.remark === "Sub-task removed",
+          );
+          if (addRemoveCandidates.length > 0) {
+            const hasRecentAddRemove = recentEntries.some(
+              (e) => e.remark === "Sub-task added" || e.remark === "Sub-task removed" || e.remark === "Subtasks updated",
+            );
+            if (!hasRecentAddRemove) {
+              // First add/remove in this window — log once
+              const addedCount = addRemoveCandidates.filter((c) => c.remark === "Sub-task added").length;
+              const removedCount = addRemoveCandidates.filter((c) => c.remark === "Sub-task removed").length;
+              let entryValue, entryRemark;
+              if (addRemoveCandidates.length === 1) {
+                entryValue = addRemoveCandidates[0].value;
+                entryRemark = addRemoveCandidates[0].remark;
+              } else {
+                const parts = [];
+                if (addedCount > 0) parts.push(`${addedCount} added`);
+                if (removedCount > 0) parts.push(`${removedCount} removed`);
+                entryValue = parts.join(", ");
+                entryRemark = "Subtasks updated";
+              }
+              historyEntries.push({
+                taskId: task._id,
+                firm: task.firm,
+                type: "checklist",
+                value: entryValue,
+                remark: entryRemark,
+                userId,
+                timestamp: now,
+              });
+            }
+            // else: another add/remove already logged in last 60s — skip silently
+          }
         }
 
         if (historyEntries.length > 0) {
-          TaskHistory.insertMany(historyEntries).catch((err) =>
+          // Await so that concurrent requests' dedup queries see these entries.
+          // Fire-and-forget was the root cause of duplicate history lines.
+          await TaskHistory.insertMany(historyEntries).catch((err) =>
             console.error("Checklist audit trail write failed:", err.message),
           );
         }

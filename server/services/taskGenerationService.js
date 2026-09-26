@@ -29,12 +29,25 @@ const TaskGenerationRun = require("../models/TaskGenerationRun");
 const pad2 = (n) => String(n).padStart(2, "0");
 
 /* =============================== IST helpers =============================== */
+
+// Use Intl to extract IST date components — works correctly regardless of server TZ
+function getISTDateParts(dateLike) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date(dateLike));
+  return {
+    y: parseInt(parts.find((p) => p.type === "year").value, 10),
+    m: parseInt(parts.find((p) => p.type === "month").value, 10) - 1, // 0-indexed
+    d: parseInt(parts.find((p) => p.type === "day").value, 10),
+  };
+}
+
 function istMidnightFrom(dateLike) {
-  const d = new Date(dateLike);
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return new Date(`${y}-${m}-${day}T00:00:00+05:30`);
+  const { y, m, d } = getISTDateParts(dateLike);
+  return istDate(y, m, d);
 }
 function istDate(y, m0, d) {
   const mm = String(m0 + 1).padStart(2, "0");
@@ -45,9 +58,7 @@ function addDaysIST(baseIstMidnight, n) {
   return new Date(baseIstMidnight.getTime() + n * 86400000);
 }
 function addMonthsIST(baseIstMidnight, n) {
-  const y = baseIstMidnight.getFullYear();
-  const m = baseIstMidnight.getMonth();
-  const d = baseIstMidnight.getDate();
+  const { y, m, d } = getISTDateParts(baseIstMidnight);
   const ym = m + n;
   const ny = y + Math.floor(ym / 12);
   const nm = ((ym % 12) + 12) % 12;
@@ -56,8 +67,7 @@ function addMonthsIST(baseIstMidnight, n) {
   return istDate(ny, nm, nd);
 }
 function endOfMonthIST(baseIstMidnight) {
-  const y = baseIstMidnight.getFullYear();
-  const m = baseIstMidnight.getMonth();
+  const { y, m } = getISTDateParts(baseIstMidnight);
   const last = new Date(y, m + 1, 0).getDate();
   return istDate(y, m, last);
 }
@@ -142,9 +152,7 @@ function normalizeDueOverrides(raw) {
 }
 
 function currentFYIST(now = new Date()) {
-  const d = istMidnightFrom(now);
-  const y = d.getFullYear();
-  const m = d.getMonth();
+  const { y, m } = getISTDateParts(now);
   const startYear = m >= 3 ? y : y - 1;
   const endYY = pad2((startYear + 1) % 100);
   return `FY ${startYear}-${endYY}`;
@@ -366,9 +374,7 @@ class TaskGenerator {
           // This allows users to specify startDate=01-Jan-2026 without needing to write FY
           let resolvedFY = cs.financialYear;
           if (!resolvedFY && cs.startDate) {
-            const sd = istMidnightFrom(cs.startDate);
-            const sdYear = sd.getFullYear();
-            const sdMonth = sd.getMonth(); // 0-indexed
+            const { y: sdYear, m: sdMonth } = getISTDateParts(cs.startDate);
             // Indian FY: Apr–Mar. Month >= 3 (Apr) means FY starts this year.
             const fyStart = sdMonth >= 3 ? sdYear : sdYear - 1;
             resolvedFY = `FY ${fyStart}-${pad2((fyStart + 1) % 100)}`;
@@ -639,9 +645,8 @@ class TaskGenerator {
       : 7;
     const dueDate = this.manualDueDate || addDaysIST(assignedAt, dueAfter);
     const dueDateSource = this.manualDueDate ? "MANUAL" : "RULE";
-    const periodKey = `OD-${assignedAt.getFullYear()}-${pad2(
-      assignedAt.getMonth() + 1,
-    )}-${pad2(assignedAt.getDate())}`;
+    const { y: odY, m: odM, d: odD } = getISTDateParts(assignedAt);
+    const periodKey = `OD-${odY}-${pad2(odM + 1)}-${pad2(odD)}`;
 
     this.tasksToPlan.push(
       this._payload({
@@ -868,6 +873,7 @@ class TaskGenerator {
     }
 
     if (normalizedFrequency === "Monthly") {
+      const MONTH_ABBR = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
       for (let i = 0; i < 12; i++) {
         const m0 = (3 + i) % 12;
         const y = m0 >= 3 ? startY : startY + 1;
@@ -877,8 +883,8 @@ class TaskGenerator {
         periods.push({
           periodStart: ps,
           periodEnd: pe,
-          servicePeriod: format(ps, "MMM-yyyy"),
-          periodKey: `${ps.getFullYear()}-${pad2(ps.getMonth() + 1)}`,
+          servicePeriod: `${MONTH_ABBR[m0]}-${y}`,
+          periodKey: `${y}-${pad2(m0 + 1)}`,
         });
       }
       return periods;
